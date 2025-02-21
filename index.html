@@ -20,6 +20,7 @@
 <link rel="manifest" href="https://getbootstrap.com/docs/5.2/assets/img/favicons/manifest.json">
 <link rel="mask-icon" href="https://getbootstrap.com/docs/5.2/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
 <link rel="icon" href="https://getbootstrap.com/docs/5.2/assets/img/favicons/favicon.ico">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <meta name="theme-color" content="#712cf9">
 
 
@@ -90,8 +91,8 @@
 
     <div class="p-5 mb-4 bg-light rounded-3">
       <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold">Our mission</h1>
-        <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
+        <h1 class="display-5 fw-bold">About us</h1>
+        <p class="col-md-8 fs-4">Hike Lab Association is a non-governmental and non-profit organization dedicated to developing socially beneficial applications and platforms to promote outdoor activities, a healthy lifestyle, and environmental conservation. Through education, connecting enthusiasts, and supporting participants, the Association aims to inspire people of all ages to actively engage in outdoor sports.</p>
       </div>
     </div>
 
@@ -99,17 +100,52 @@
       <div class="col-md-12">
         <div class="h-100 p-5 text-bg-success rounded-3">
           <h2>Our projects</h2>
-          <p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
-          <button class="btn btn-outline-light" type="button">Example button</button>
+          <p>We are currently developing a website that will serve as a central hub for all public outdoor events organized by outdoor sports enthusiasts from the Balkan region. Additionally, we are creating an engaging quiz designed to educate people in a fun and interactive way about mountaineering and the essential skills for safe outdoor adventures. Lastly, we are launching a challenge to motivate people to walk more than usual over a set period, encouraging an active and healthy lifestyle.</p>
+          <button id="showProjectsBtn" class="btn btn-outline-light" type="button">Learn more</button>
         </div>
       </div>
+    </div>
+    <div id="projectsRow" class="row d-none">
+        <div class="col-md-4">
+            <div class="card">
+                <iframe src="https://example1.com" width="100%" height="200"></iframe>
+                <div class="card-body">
+                    <h5 class="card-title">Project 1</h5>
+                    <p class="card-text">A brief description of the first project.</p>
+                    <a href="https://example1.com" class="stretched-link" target="_blank"></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <iframe src="https://example2.com" width="100%" height="200"></iframe>
+                <div class="card-body">
+                    <h5 class="card-title">Project 2</h5>
+                    <p class="card-text">A brief description of the second project.</p>
+                    <a href="https://example2.com" class="stretched-link" target="_blank"></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <iframe src="https://example3.com" width="100%" height="200"></iframe>
+                <div class="card-body">
+                    <h5 class="card-title">Project 3</h5>
+                    <p class="card-text">A brief description of the third project.</p>
+                    <a href="https://example3.com" class="stretched-link" target="_blank"></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 text-center mt-3">
+            <button id="hideProjectsBtn" class="btn btn-danger">Hide</button>
+        </div>
     </div>
     <div clss="row align-items-md-stretch mb-3">
       <div class="col-md-12">
         <div class="h-100 p-5 bg-light border rounded-3">
           <h2>Our team</h2>
           <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
-          <button class="btn btn-outline-secondary" type="button">Example button</button>
+          <button class="btn btn-outline-secondary" type="button">Meet our team</button>
         </div>
       </div>
     </div>
@@ -122,9 +158,10 @@
         <div class="row">
           <div class="col-md-6">
             <h5>Email:</h5>
-            <p>contact@hikelab.com</p>
+            <p>damircicic@gmail.com</p>
+            <p>irena.miladin@gmail.com</p>
             <h5>Phone:</h5>
-            <p>+1 (234) 567-890</p>
+            <p>+381 (61) 172 2114</p>
           </div>
           <div class="col-md-6">
             <h5>Follow Us:</h5>
@@ -143,6 +180,15 @@
     </footer>
   </div>
 </main>
+    $(document).ready(function () {
+        $("#showProjectsBtn").click(function () {
+            $("#projectsRow").removeClass("d-none").addClass("d-flex");
+        });
+
+        $("#hideProjectsBtn").click(function () {
+            $("#projectsRow").addClass("d-none").removeClass("d-flex");
+        });
+    });
   </body>
 </html>
 
