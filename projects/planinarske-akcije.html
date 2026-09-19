@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="sr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="planinarske-akcije.com — centralno mesto za planinarske akcije i aktivnosti na otvorenom u regionu.">
+  <title>planinarske-akcije.com — Hike Lab</title>
+  <link rel="canonical" href="https://hikelab.org/projects/planinarske-akcije.html">
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" href="../favicon/apple-touch-icon.png" sizes="180x180">
+  <link rel="icon" href="../favicon/favicon-32x32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="../favicon/favicon-16x16.png" sizes="16x16" type="image/png">
+  <meta name="theme-color" content="#2d6a4f">
+
+  <!-- Bootstrap 5.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --hl-green:       #2d6a4f;
+      --hl-green-dark:  #1b4332;
+      --hl-green-light: #52b788;
+      --hl-cream:       #fefae0;
+      --hl-tan:         #e9ecef;
+      --radius:         1rem;
+      --shadow:         0 4px 24px rgba(0,0,0,.08);
+    }
+    body { font-family: 'Inter', sans-serif; color: #212529; background: #fff; }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+    /* Navbar */
+    .navbar {
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,.07);
+    }
+    .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--hl-green) !important;
+      font-weight: 700;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      color: var(--hl-green);
+      font-weight: 600;
+      font-size: .9rem;
+      text-decoration: none;
+    }
+    .back-link:hover { color: var(--hl-green-dark); }
+
+    /* Language toggle */
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: .2rem;
+      background: var(--hl-tan);
+      border-radius: 2rem;
+      padding: .2rem .3rem;
+    }
+    .lang-btn {
+      border: none;
+      background: transparent;
+      font-weight: 600;
+      font-size: .78rem;
+      padding: .25rem .65rem;
+      border-radius: 2rem;
+      cursor: pointer;
+      color: #6c757d;
+      transition: all .2s;
+    }
+    .lang-btn.active { background: var(--hl-green); color: #fff; }
+
+    /* Hero */
+    .project-hero {
+      background: linear-gradient(135deg, var(--hl-green-dark) 0%, var(--hl-green) 100%);
+      color: #fff;
+      padding: 4rem 0 3rem;
+    }
+    .project-hero .badge-status {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .35rem .9rem;
+      border-radius: 2rem;
+      background: rgba(255,255,255,.2);
+      color: #fff;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+    .project-hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: .75rem; }
+    .project-hero p { opacity: .9; font-size: 1.05rem; max-width: 600px; line-height: 1.7; }
+
+    /* Screenshot */
+    .screenshot-wrap {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(0,0,0,.07);
+    }
+    .screenshot-wrap img { width: 100%; display: block; }
+
+    /* Content */
+    .project-body { padding: 4rem 0; }
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: .75rem;
+      background: #d8f3dc;
+      color: var(--hl-green-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .feature-item {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      margin-bottom: 1.75rem;
+    }
+    .feature-item h5 { font-family: 'Inter', sans-serif; font-weight: 700; margin-bottom: .35rem; }
+    .feature-item p { font-size: .95rem; color: #555; line-height: 1.65; margin: 0; }
+
+    .cta-box {
+      background: var(--hl-green);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      text-align: center;
+    }
+    .cta-box h3 { color: #fff; margin-bottom: .75rem; }
+    .cta-box p { opacity: .9; margin-bottom: 1.5rem; }
+    .btn-cta {
+      background: #fff;
+      color: var(--hl-green-dark);
+      font-weight: 700;
+      padding: .75rem 2rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,.2);
+      color: var(--hl-green-dark);
+    }
+
+    footer {
+      background: var(--hl-green-dark);
+      color: rgba(255,255,255,.7);
+      padding: 1.75rem 0;
+      font-size: .88rem;
+    }
+    footer a { color: rgba(255,255,255,.65); text-decoration: none; }
+    footer .brand { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #fff; font-weight: 700; }
+
+    /* Lang */
+    [data-lang] { display: none !important; }
+    .lang-srb [data-lang="srb"] { display: revert !important; }
+    .lang-eng [data-lang="eng"] { display: revert !important; }
+    span[data-lang] { display: none !important; }
+    .lang-srb span[data-lang="srb"] { display: inline !important; }
+    .lang-eng span[data-lang="eng"] { display: inline !important; }
+  </style>
+</head>
+
+<body class="lang-srb">
+
+<!-- Navbar -->
+<nav class="navbar sticky-top py-3">
+  <div class="container d-flex justify-content-between align-items-center">
+    <a class="navbar-brand" href="../index.html">
+      <img src="https://storage.googleapis.com/bucket-hike-list-cloud-storage/logos/Hike%20Lab%20%E2%80%93%20logo.png" alt="Hike Lab" style="height:38px; width:auto; display:block;">
+    </a>
+    <div class="d-flex align-items-center gap-3">
+      <a href="../index.html#projects" class="back-link">
+        <i class="bi bi-arrow-left"></i>
+        <span data-lang="srb">Svi projekti</span>
+        <span data-lang="eng">All projects</span>
+      </a>
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btn-srb" onclick="setLang('srb')">SRB</button>
+        <button class="lang-btn" id="btn-eng" onclick="setLang('eng')">ENG</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="project-hero">
+  <div class="container">
+    <span class="badge-status">
+      <span data-lang="srb">Aktivan projekat</span>
+      <span data-lang="eng">Active project</span>
+    </span>
+    <h1>planinarske-akcije.com</h1>
+    <p>
+      <span data-lang="srb">Centralno mesto za sve planinarske akcije i aktivnosti na otvorenom u Srbiji i regionu.</span>
+      <span data-lang="eng">The central hub for all hiking events and outdoor activities in Serbia and the region.</span>
+    </p>
+  </div>
+</section>
+
+<!-- Main content -->
+<section class="project-body">
+  <div class="container">
+    <div class="row gy-5 align-items-start">
+      <div class="col-lg-7">
+
+        <!-- Screenshot -->
+        <div class="screenshot-wrap mb-5">
+          <img src="../images/Screenshot 2025-02-21 at 02.25.00.png" alt="planinarske-akcije.com screenshot">
+        </div>
+
+        <!-- Description -->
+        <h2 class="mb-3" style="font-size:1.6rem; color:var(--hl-green-dark);">
+          <span data-lang="srb">O projektu</span>
+          <span data-lang="eng">About the project</span>
+        </h2>
+        <p style="font-size:1rem; line-height:1.8; color:#444;" data-lang="srb">
+          planinarske-akcije.com je veb platforma koja služi kao centralno čvorište za sve javne događaje i aktivnosti na otvorenom koji se organizuju u Srbiji i šire u balkanskom regionu. Platforma spaja organizatore i učesnike, olakšava pronalaženje akcija po regijama, težini i terminu, i podstiče izgradnju zajednice aktivnih planinarskih entuzijasta.
+        </p>
+        <p style="font-size:1rem; line-height:1.8; color:#444;" data-lang="eng">
+          planinarske-akcije.com is a web platform serving as the central hub for all public outdoor events and activities organized in Serbia and across the Balkan region. The platform connects organizers and participants, makes it easy to find events by region, difficulty, and date, and encourages the building of a community of active hiking enthusiasts.
+        </p>
+
+      </div>
+
+      <!-- Sidebar features -->
+      <div class="col-lg-5">
+        <div style="background:#f8fdf9; border-radius:var(--radius); padding:2rem; border:1px solid rgba(0,0,0,.06);">
+          <h4 class="mb-4" style="font-size:1.1rem; color:var(--hl-green-dark);">
+            <span data-lang="srb">Ključne funkcionalnosti</span>
+            <span data-lang="eng">Key features</span>
+          </h4>
+
+          <div class="feature-item">
+            <div class="feature-icon"><i class="bi bi-map-fill"></i></div>
+            <div>
+              <h5>
+                <span data-lang="srb">Pregled akcija</span>
+                <span data-lang="eng">Event listing</span>
+              </h5>
+              <p>
+                <span data-lang="srb">Sve planinarske akcije na jednom mestu — filtriraj po lokaciji, datumu i težini.</span>
+                <span data-lang="eng">All hiking events in one place — filter by location, date, and difficulty.</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon"><i class="bi bi-people-fill"></i></div>
+            <div>
+              <h5>
+                <span data-lang="srb">Zajednica planinaray</span>
+                <span data-lang="eng">Hiking community</span>
+              </h5>
+              <p>
+                <span data-lang="srb">Korisnički profili, organizatori i entuzijasti svi na jednoj platformi.</span>
+                <span data-lang="eng">User profiles, organizers, and enthusiasts all on one platform.</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon"><i class="bi bi-geo-alt-fill"></i></div>
+            <div>
+              <h5>
+                <span data-lang="srb">Regionalna pokrivenost</span>
+                <span data-lang="eng">Regional coverage</span>
+              </h5>
+              <p>
+                <span data-lang="srb">Platforma pokriva Srbiju i širi balkanski region.</span>
+                <span data-lang="eng">The platform covers Serbia and the broader Balkan region.</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="feature-item mb-0">
+            <div class="feature-icon"><i class="bi bi-shield-check-fill"></i></div>
+            <div>
+              <h5>
+                <span data-lang="srb">Bezbednost na prvom mestu</span>
+                <span data-lang="eng">Safety first</span>
+              </h5>
+              <p>
+                <span data-lang="srb">Informacije o bezbednosti i preduslovima za svaku akciju.</span>
+                <span data-lang="eng">Safety information and prerequisites provided for every event.</span>
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-box mt-4">
+          <h3 style="font-size:1.3rem;">
+            <span data-lang="srb">Posetite platformu</span>
+            <span data-lang="eng">Visit the platform</span>
+          </h3>
+          <p>
+            <span data-lang="srb">Pronađite svoju sledeću planinarsku avanturu.</span>
+            <span data-lang="eng">Find your next hiking adventure.</span>
+          </p>
+          <a href="https://planinarske-akcije.com/" target="_blank" rel="noopener" class="btn-cta">
+            planinarske-akcije.com <i class="bi bi-arrow-up-right"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+    <span class="brand">🥾 Hike Lab</span>
+    <span>
+      <span data-lang="srb">© 2026 Hike Lab.</span>
+      <span data-lang="eng">© 2026 Hike Lab.</span>
+    </span>
+    <a href="../index.html">
+      <span data-lang="srb">← Nazad na sajt</span>
+      <span data-lang="eng">← Back to site</span>
+    </a>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  function setLang(lang) {
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-srb').classList.toggle('active', lang === 'srb');
+    document.getElementById('btn-eng').classList.toggle('active', lang === 'eng');
+    document.documentElement.lang = lang === 'srb' ? 'sr' : 'en';
+    localStorage.setItem('hl-lang', lang);
+  }
+  (function () {
+    const saved = localStorage.getItem('hl-lang');
+    if (saved && saved !== 'srb') setLang(saved);
+  })();
+</script>
+</body>
+</html>

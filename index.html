@@ -1,315 +1,1109 @@
-
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <title>Hike Lab</title>
-    <link rel="canonical" href="http://hikelab.org/">
-    <link href="https://getbootstrap.com/docs/5.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-        <!-- Favicons -->
-    <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png" sizes="180x180">
-    <link rel="icon" href="favicon/favicon-16x16.png" sizes="16x16" type="image/png">
-    <link rel="icon" type="image/png" href="favicon/favicon-32x32.png" sizes="32x32">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <meta name="theme-color" content="#712cf9">
-    <style>
-        .card-body a {
-            text-decoration: none !important;
-        }
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+<html lang="sr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Hike Lab — nevladina organizacija posvećena promociji aktivnosti na otvorenom, zdravog načina života i očuvanja prirode.">
+  <title>Hike Lab</title>
+  <link rel="canonical" href="https://hikelab.org/">
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png" sizes="180x180">
+  <link rel="icon" href="favicon/favicon-32x32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="favicon/favicon-16x16.png" sizes="16x16" type="image/png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+  <meta name="theme-color" content="#2d6a4f">
 
-      .b-example-divider {
-        height: 3rem;
-        background-color: rgba(0, 0, 0, .1);
-        border: solid rgba(0, 0, 0, .15);
-        border-width: 1px 0;
-        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-      }
+  <!-- Bootstrap 5.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
-      .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-      }
+  <style>
+    /* ── Design tokens ── */
+    :root {
+      --hl-green:       #2d6a4f;
+      --hl-green-dark:  #1b4332;
+      --hl-green-light: #52b788;
+      --hl-cream:       #fefae0;
+      --hl-tan:         #e9ecef;
+      --hl-text:        #212529;
+      --hl-muted:       #6c757d;
+      --radius:         1rem;
+      --shadow:         0 4px 24px rgba(0,0,0,.08);
+      --shadow-hover:   0 8px 32px rgba(0,0,0,.14);
+    }
 
-      .bi {
-        vertical-align: -.125em;
-        fill: currentColor;
-      }
+    /* ── Base ── */
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--hl-text);
+      background: #fff;
+      scroll-behavior: smooth;
+    }
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+    }
+    section {
+      scroll-margin-top: 72px;
+    }
 
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
+    /* ── Navbar ── */
+    .navbar {
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,.07);
+      padding: .8rem 0;
+    }
+    .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--hl-green) !important;
+      font-weight: 700;
+    }
+    .nav-link {
+      font-weight: 500;
+      font-size: .9rem;
+      color: var(--hl-text) !important;
+      padding: .4rem .75rem !important;
+      border-radius: .5rem;
+      transition: background .2s, color .2s;
+    }
+    .nav-link:hover {
+      background: var(--hl-cream);
+      color: var(--hl-green) !important;
+    }
 
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-      .carousel-inner {
-            display: flex;
-            cursor: grab;
-        }
-        .carousel-inner:active {
-            cursor: grabbing;
-        }
-        .carousel-item {
-            transition: transform 1s ease-in-out;
-        }
-    </style>
+    /* Language toggle */
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: .2rem;
+      background: var(--hl-tan);
+      border-radius: 2rem;
+      padding: .2rem .3rem;
+      margin-left: .75rem;
+    }
+    .lang-btn {
+      border: none;
+      background: transparent;
+      font-weight: 600;
+      font-size: .78rem;
+      padding: .25rem .65rem;
+      border-radius: 2rem;
+      cursor: pointer;
+      color: var(--hl-muted);
+      transition: all .2s;
+    }
+    .lang-btn.active {
+      background: var(--hl-green);
+      color: #fff;
+    }
 
-    
-  </head>
-  <body>
-    
-<main>
-  <div class="container py-4">
-    <header class="pb-3 mb-4 border-bottom d-flex justify-content-between w-100">
-      <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-        <span class="text-success" style="font-size: 2rem; font-weight: 500;">Hike Lab</span>
-      </a>
-      <div class="d-flex mr-3 align-items-center">
-        <span class="text-success">ENG</span>&nbsp;
-        <span class="cursor-pointer"><a href="index_srb.html" style="text-decoration: none; color: black;">SRB</a></span>
-      </div>
-    </header>
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, var(--hl-green-dark) 0%, var(--hl-green) 60%, var(--hl-green-light) 100%);
+      color: #fff;
+      padding: 3rem 0 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-emoji {
+      font-size: 2.2rem;
+      margin-bottom: .5rem;
+      display: block;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      opacity: .9;
+      max-width: 560px;
+      line-height: 1.7;
+    }
+    .hero .btn-hero {
+      background: #fff;
+      color: var(--hl-green-dark);
+      font-weight: 700;
+      padding: .75rem 2rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1.75rem;
+      transition: transform .2s, box-shadow .2s;
+      border: none;
+    }
+    .hero .btn-hero:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.2);
+    }
 
-    <div class="p-3 p-md-5 mb-4 bg-light rounded-3">
-      <div class="container-fluid">
-        <h2>About us</h2>
-        <p class="col-md-8" style="font-size: 1.05rem !important;">Hike Lab is a non-governmental and non-profit organization located in Serbia dedicated to developing socially beneficial applications and platforms to promote outdoor activities, a healthy lifestyle, and environmental conservation. Through education, connecting enthusiasts, and supporting participants, the organization aims to inspire people of all ages to actively engage in outdoor sports.</p>
+    /* ── Section styles ── */
+    .section-label {
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--hl-green);
+      margin-bottom: .5rem;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      margin-bottom: 1rem;
+      color: var(--hl-green-dark);
+    }
+    .section-intro {
+      font-size: 1.05rem;
+      color: var(--hl-muted);
+      max-width: 680px;
+      line-height: 1.75;
+    }
+
+    /* ── About / Mission cards ── */
+    .mission-card {
+      background: var(--hl-cream);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      height: 100%;
+      border: 1px solid rgba(0,0,0,.04);
+    }
+    .mission-card.accent {
+      background: var(--hl-green);
+      color: #fff;
+    }
+    .mission-card.accent h3 {
+      color: #fff;
+    }
+    .mission-card.accent p {
+      opacity: .92;
+    }
+    .mission-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--hl-green-dark);
+    }
+    .mission-card p {
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 0;
+    }
+
+    /* ── Project cards ── */
+    .project-card {
+      border-radius: var(--radius);
+      border: 1px solid rgba(0,0,0,.07);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform .25s, box-shadow .25s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      color: inherit;
+    }
+    .project-card img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+    }
+    .project-card .card-body {
+      padding: 1.5rem;
+    }
+    .project-card .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      margin-bottom: .5rem;
+      color: var(--hl-green-dark);
+    }
+    .project-card .card-text {
+      font-size: .92rem;
+      color: var(--hl-muted);
+      line-height: 1.6;
+    }
+    .badge-status {
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: .3rem .75rem;
+      border-radius: 2rem;
+    }
+    .badge-active {
+      background: #d8f3dc;
+      color: var(--hl-green-dark);
+    }
+
+    /* ── Founders section ── */
+    .founders-section {
+      background: linear-gradient(180deg, #f8fdf9 0%, #fff 100%);
+    }
+    .founder-card {
+      background: #fff;
+      border-radius: var(--radius);
+      border: 1px solid rgba(0,0,0,.07);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .founder-avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: var(--hl-green);
+      color: #fff;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .founder-card .founder-body {
+      padding: 2rem;
+    }
+    .founder-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      color: var(--hl-green-dark);
+      margin-bottom: .15rem;
+    }
+    .founder-role {
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--hl-green-light);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 1.25rem;
+    }
+    .founder-bio {
+      font-size: .97rem;
+      line-height: 1.8;
+      color: #3a3a3a;
+    }
+    .founder-linkedin {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      margin-top: 1.25rem;
+      font-size: .88rem;
+      font-weight: 600;
+      color: var(--hl-green);
+      text-decoration: none;
+      border: 1.5px solid var(--hl-green);
+      border-radius: 2rem;
+      padding: .35rem 1rem;
+      transition: background .2s, color .2s;
+    }
+    .founder-linkedin:hover {
+      background: var(--hl-green);
+      color: #fff;
+    }
+
+    .vision-box {
+      background: var(--hl-green);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 2.5rem 3rem;
+      margin-top: 3rem;
+    }
+    .vision-box h3 {
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    .vision-box p {
+      opacity: .92;
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 0;
+    }
+
+    /* ── Team section ── */
+    .team-card {
+      background: #fff;
+      border-radius: var(--radius);
+      border: 1px solid rgba(0,0,0,.07);
+      box-shadow: var(--shadow);
+      padding: 1.5rem;
+      height: 100%;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .team-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+    .team-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--hl-tan);
+      color: var(--hl-green-dark);
+      font-weight: 700;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      flex-shrink: 0;
+    }
+    .team-card .member-name {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: .15rem;
+    }
+    .team-card .member-name a {
+      color: var(--hl-green-dark);
+      text-decoration: none;
+    }
+    .team-card .member-name a:hover {
+      color: var(--hl-green-light);
+    }
+    .team-card .member-role {
+      font-size: .8rem;
+      color: var(--hl-muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: .75rem;
+    }
+    .team-card .member-desc {
+      font-size: .9rem;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    /* ── Contact section ── */
+    .contact-section {
+      background: var(--hl-cream);
+    }
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--hl-green);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .contact-row a {
+      color: var(--hl-text);
+      text-decoration: none;
+    }
+    .contact-row a:hover {
+      color: var(--hl-green);
+    }
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      border: 1.5px solid var(--hl-green);
+      color: var(--hl-green);
+      border-radius: 2rem;
+      padding: .45rem 1.25rem;
+      font-weight: 600;
+      font-size: .9rem;
+      text-decoration: none;
+      transition: background .2s, color .2s;
+    }
+    .social-btn:hover {
+      background: var(--hl-green);
+      color: #fff;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--hl-green-dark);
+      color: rgba(255,255,255,.7);
+      padding: 2rem 0;
+      font-size: .88rem;
+    }
+    footer .brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: #fff;
+      font-weight: 700;
+    }
+    footer a {
+      color: rgba(255,255,255,.65);
+      text-decoration: none;
+    }
+    footer a:hover {
+      color: #fff;
+    }
+
+    /* ── Utilities ── */
+    .py-section { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+    @media (max-width: 768px) {
+      .py-section { padding-top: 2rem; padding-bottom: 2rem; }
+      .vision-box { padding: 2rem 1.5rem; }
+    }
+
+    /* ── Founder bio clamp ── */
+    .founder-bio-wrap {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 5;
+      margin-bottom: .25rem;
+    }
+    .founder-bio-wrap.expanded {
+      display: block;
+      overflow: visible;
+      -webkit-line-clamp: unset;
+    }
+    .see-more-btn {
+      background: none;
+      border: none;
+      padding: .3rem 0;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--hl-green);
+      cursor: pointer;
+      display: block;
+      margin-bottom: .75rem;
+    }
+    .see-more-btn:hover { color: var(--hl-green-dark); text-decoration: underline; }
+
+    /* Hide/show language content */
+    [data-lang] { display: none !important; }
+    .lang-srb [data-lang="srb"] { display: revert !important; }
+    .lang-eng [data-lang="eng"] { display: revert !important; }
+
+    /* For inline text spans within shared elements */
+    span[data-lang] { display: none !important; }
+    .lang-srb span[data-lang="srb"] { display: inline !important; }
+    .lang-eng span[data-lang="eng"] { display: inline !important; }
+  </style>
+</head>
+
+<body class="lang-srb">
+
+<!-- ═══════════════════════════ CONSTRUCTION BANNER ═══════════════════════════ -->
+<div id="wip-banner" style="
+  background: repeating-linear-gradient(
+    -45deg,
+    #f59e0b,
+    #f59e0b 10px,
+    #fbbf24 10px,
+    #fbbf24 20px
+  );
+  color: #1c1917;
+  font-family: 'Inter', sans-serif;
+  font-size: .82rem;
+  font-weight: 600;
+  padding: .5rem 1rem;
+  text-align: center;
+  position: relative;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .75rem;
+  flex-wrap: wrap;
+">
+  <span>🚧</span>
+  <span data-lang="srb">Sajt je u izradi — sadržaj i dizajn su privremeni i biće ažurirani.</span>
+  <span data-lang="eng">This site is under construction — content and design are provisional and will be updated.</span>
+  <button onclick="document.getElementById('wip-banner').style.display='none'; sessionStorage.setItem('wip-dismissed','1');"
+    style="background:rgba(0,0,0,.15); border:none; border-radius:.4rem; padding:.2rem .6rem; cursor:pointer; font-size:.8rem; font-weight:700; color:#1c1917; margin-left:.5rem; flex-shrink:0;">
+    ✕
+  </button>
+</div>
+
+<!-- ═══════════════════════════ NAVBAR ═══════════════════════════ -->
+
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#hero">
+      <img src="https://storage.googleapis.com/bucket-hike-list-cloud-storage/logos/Hike%20Lab%20%E2%80%93%20logo.png" alt="Hike Lab" style="height:38px; width:auto; display:block;">
+    </a>
+
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav mx-auto gap-1">
+        <li class="nav-item">
+          <a class="nav-link" href="#about">
+            <span data-lang="srb">O nama</span>
+            <span data-lang="eng">About</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#projects">
+            <span data-lang="srb">Projekti</span>
+            <span data-lang="eng">Projects</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#founders">
+            <span data-lang="srb">Osnivači</span>
+            <span data-lang="eng">Founders</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#team">
+            <span data-lang="srb">Tim</span>
+            <span data-lang="eng">Team</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#contact">
+            <span data-lang="srb">Kontakt</span>
+            <span data-lang="eng">Contact</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btn-srb" onclick="setLang('srb')">SRB</button>
+        <button class="lang-btn" id="btn-eng" onclick="setLang('eng')">ENG</button>
       </div>
     </div>
-
-    <div class="row align-items-md-stretch mb-5">
-      <div class="col-md-6">
-        <div class="h-100 p-3 p-md-5 text-bg-success rounded-3">
-          <h2>Our projects</h2>
-          <p style="padding-right: 15%; font-size: 1.05rem !important;">We are currently developing a website that will serve as a central hub for all public outdoor events organized by outdoor sports enthusiasts from the Balkan region. Additionally, we are creating an engaging quiz designed to educate people in a fun and interactive way about mountaineering and the essential skills for safe outdoor adventures. Lastly, we are launching a challenge to motivate people to walk more than usual over a set period, encouraging an active and healthy lifestyle.</p>
-          <p>Find out more by clinking the links bellow.</p>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="h-100 p-3 p-md-5 bg-light border rounded-3">
-          <h2>What We Strive For</h2>
-          <p style="padding-right: 15%; font-size: 1.05rem !important;">Our organization aims to foster collaboration with other like-minded entities to jointly develop socially beneficial applications that address community needs. We seek to engage a broad spectrum of individuals, particularly IT professionals and outdoor activities enthusiasts, by creating opportunities for them to contribute their skills and passion. By promoting outdoor activities, we hope to encourage healthier, more active lifestyles while also supporting charitable causes through our efforts. Together, we strive to make a positive impact both in technology and in the world around us.</p>
-        </div>
-      </div>
-    </div>
-    <div id="projectsRow" class="row">
-        <div class="col-md-4 mb-5">
-            <div class="card">
-                <img src="images/Screenshot 2025-02-21 at 02.25.00.png" width="100%" height="200" style="object-fit: cover;">
-                <div class="card-body">
-                    <h5 class="card-title">planinarske-akcije.com</h5>
-                    <p class="card-text">The central location for information about outdoor activities.</p>
-                    <a href="https://planinarske-akcije.com/" class="stretched-link" target="_blank"></a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-5">
-            <div class="card">
-                <img src="images/Screenshot 2025-02-21 at 03.33.21.png" width="100%" height="200" style="object-fit: cover;">
-                <div class="card-body">
-                    <h5 class="card-title">Quiz</h5>
-                    <p class="card-text">A fun way to lear more about mountaineering.</p>
-                    <a href="https://planinarske-akcije.com/quiz/quiz_page?quiz_id=3&lang=ENGLISH" class="stretched-link" target="_blank"></a>
-                </div>
-            </div>
-        </div>
-        <!-- <div class="col-md-4 mb-5">
-            <div class="card">
-                <img src="images/Screenshot 2025-02-21 at 02.14.28.png" width="100%" height="200" style="object-fit: cover;">
-                <div class="card-body">
-                    <h5 class="card-title">Balkan Footprint Challenge</h5>
-                    <p class="card-text">A cross-border hiking initiative of civil organizations from Montenegro, North Macedonia and Serbia</p>
-                    <a href="https://planinarske-akcije.com/maps/map/" class="stretched-link" target="_blank"></a>
-                </div>
-            </div>
-        </div> -->
-    </div>
-    <h2 class="text-center mb-4">Our Team</h2>
-        <div id="memberCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="8000">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="row">
-                        <div class="col-md-4 col-sm-6 col-12 mb-2">
-                            <div class="card bg-light">
-                                <!-- <img src="https://via.placeholder.com/150" class="card-img-top" alt="Member Image"> -->
-                                <div class="card-body">
-                                    <a href="https://www.linkedin.com/in/damir-%C4%8Di%C4%8Di%C4%87-3466a314/"><h5 class="card-title">Damir Čičić</h5></a>
-                                    <p class="card-text">Assocition president</p>
-                                    <p class="card-text">A software engineer developing socially beneficial applications, engaged in mountaineering and environmental conservation.</p>
-                                  </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 d-sm-block mb-2">
-                            <div class="card bg-light">
-                                <!-- <img src="https://via.placeholder.com/150" class="card-img-top" alt="Member Image"> -->
-                                <div class="card-body">
-                                    <a href="https://www.linkedin.com/in/irena-lidia/"><h5 class="card-title">Irena Miladin</h5></a>
-                                    <p class="card-text">Board Member</p>
-                                    <p class="card-text">Ecology and animal rights activist, senior product owner.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 d-md-block mb-2">
-                            <div class="card bg-light">
-                                <!-- <img src="https://via.placeholder.com/150" class="card-img-top" alt="Member Image"> -->
-                                <div class="card-body">
-                                    <a href="https://www.linkedin.com/in/p-scepanovic/"><h5 class="card-title">Petar Šćepanović</h5></a>
-                                    <p class="card-text">Board Member</p>
-                                    <p class="card-text">Full-Stack web developer</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="row">
-                        <div class="col-md-4 col-sm-6 col-12 mb-2">
-                            <div class="card bg-light">
-                                <!-- <img src="https://via.placeholder.com/150" class="card-img-top" alt="Member Image"> -->
-                                <div class="card-body">
-                                    <a href="https://www.linkedin.com/in/sanja-ignjatovic-sah-nyah/"><h5 class="card-title">Sanja Ignjatović</h5></a>
-                                    <p class="card-text">Board Member</p>
-                                    <div class="card-text">A critical-thinking designer with a keen eye for detail and a strong passion for beautifully crafted layouts</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 d-sm-block mb-2">
-                            <div class="card bg-light">
-                                <!-- <img src="https://via.placeholder.com/150" class="card-img-top" alt="Member Image"> -->
-                                <div class="card-body">
-                                    <a href="https://planinarske-akcije.com/users/profile/424"><h5 class="card-title">Uglješa Đorić</h5></a>   
-                                    <p class="card-text">Board Member</p>
-                                    <p class="card-text">Mountaineering expert</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md mb-2">
-                            <div class="card bg-light">
-                                <!-- <img src="https://via.placeholder.com/150" class="card-img-top" alt="Member Image"> -->
-                                <div class="card-body">
-                                    <a href="https://www.linkedin.com/in/zeljko-miloradovic-066653238/"><h5 class="card-title">Željko Miloradović</h5></a>  
-                                    <p class="card-text">Board Member</p>
-                                    <p class="card-text">Platform engineer</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#memberCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#memberCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            </button>
-        </div>
-    <br>
-     <!-- Contact Section -->
-     <div class="col-12">
-        <div class="h-100 p-3 p-md-5 bg-light border rounded-3">
-          <h2>Contact us</h2>
-          <p class="mb-4">Get in touch with us via the contact details below or reach us through our social media profiles.</p>
-        <div class="row">
-          <div class="col-md-6">
-            <h5>Email:</h5>
-            <p>damircicic@gmail.com</p>
-            <p>irena.miladin@gmail.com</p>
-            <h5>Phone:</h5>
-            <p>+381 (61) 172 2114</p>
-          </div>
-          <div class="col-md-6">
-            <h5>Follow Us:</h5>
-            <!-- <a href="https://twitter.com/hikelab" class="btn btn-outline-dark me-2">Twitter</a> -->
-            <a href="https://www.linkedin.com/company/106597449" class="btn btn-outline-secondary me-2" disabled>LinkedIn</a>
-            <!-- <a href="https://facebook.com/hikelab" class="btn btn-outline-dark">Facebook</a> -->
-          </div>
-        </div>
-        </div>
-      </div>
-    <br>
-    <footer class="pt-3 pl-2 mt-4 text-muted border-top">
-      &copy; Hike Lab,2026
-    </footer>
   </div>
-</main>
-<!-- <script>
-    $(document).ready(function () {
-        $("#showProjectsBtn").click(function () {
-            $("#projectsRow").removeClass("d-none").addClass("d-flex");
-        });
+</nav>
 
-        $("#hideProjectsBtn").click(function () {
-            $("#projectsRow").addClass("d-none").removeClass("d-flex");
-        });
+<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="container position-relative">
+
+    <span class="hero-emoji">🌿</span>
+    <h1>
+      <span data-lang="srb">Zajedno u prirodu.<br>Zajedno napred.</span>
+      <span data-lang="eng">Into nature, together.<br>Forward, together.</span>
+    </h1>
+    <p>
+      <span data-lang="srb">Hike Lab je nevladina i neprofitna organizacija posvećena promociji planinarenja, aktivnog života i zaštite prirode kroz inovativne projekte i izgradnju zajednice.</span>
+      <span data-lang="eng">Hike Lab is a non-governmental, non-profit organization dedicated to promoting hiking, active lifestyles, and nature conservation through innovative projects and community building.</span>
+    </p>
+    <a href="#projects" class="btn-hero">
+      <span data-lang="srb">Naši projekti &darr;</span>
+      <span data-lang="eng">Our projects &darr;</span>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ ABOUT ═══════════════════════════ -->
+<section id="about" class="py-section">
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-lg-8">
+        <p class="section-label">
+          <span data-lang="srb">Ko smo</span>
+          <span data-lang="eng">Who we are</span>
+        </p>
+        <h2 class="section-title">
+          <span data-lang="srb">O nama</span>
+          <span data-lang="eng">About us</span>
+        </h2>
+        <p class="section-intro">
+          <span data-lang="srb">Hike Lab je nevladina i neprofitna organizacija smeštena u Srbiji, posvećena razvoju društveno korisnih aplikacija i platformi za promociju aktivnosti na otvorenom, zdravog načina života i očuvanja životne sredine. Kroz edukaciju, povezivanje entuzijasta i podršku učesnicima, organizacija ima za cilj da inspiriše ljude svih uzrasta da aktivno učestvuju u sportovima na otvorenom.</span>
+          <span data-lang="eng">Hike Lab is a non-governmental and non-profit organization located in Serbia dedicated to developing socially beneficial applications and platforms to promote outdoor activities, a healthy lifestyle, and environmental conservation. Through education, connecting enthusiasts, and supporting participants, the organization aims to inspire people of all ages to actively engage in outdoor sports.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ PROJECTS ═══════════════════════════ -->
+<section id="projects" class="py-section" style="background:#f8fdf9;">
+  <div class="container">
+    <p class="section-label">
+      <span data-lang="srb">Šta gradimo</span>
+      <span data-lang="eng">What we build</span>
+    </p>
+    <h2 class="section-title">
+      <span data-lang="srb">Projekti</span>
+      <span data-lang="eng">Projects</span>
+    </h2>
+    <p class="section-intro mb-5">
+      <span data-lang="srb">Svaki projekat kliknite da saznate više. Aktivno radimo na sledećim inicijativama:</span>
+      <span data-lang="eng">Click on any project to learn more. We are actively working on the following initiatives:</span>
+    </p>
+
+    <div class="row gy-4">
+      <!-- Project 1: planinarske-akcije.com -->
+      <div class="col-md-6 col-lg-4">
+        <a href="projects/planinarske-akcije.html" class="project-card">
+          <img src="images/Screenshot 2025-02-21 at 02.25.00.png" alt="planinarske-akcije.com">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <span class="card-title d-block">planinarske-akcije.com</span>
+              <span class="badge-status badge-active">
+                <span data-lang="srb">Aktivan</span>
+                <span data-lang="eng">Active</span>
+              </span>
+            </div>
+            <p class="card-text">
+              <span data-lang="srb">Centralno mesto za informacije o planinarskim akcijama i aktivnostima na otvorenom u regionu.</span>
+              <span data-lang="eng">The central hub for information on hiking events and outdoor activities in the region.</span>
+            </p>
+            <p class="mt-2 mb-0" style="font-size:.85rem; color:var(--hl-green); font-weight:600;">
+              <span data-lang="srb">Saznaj više →</span>
+              <span data-lang="eng">Learn more →</span>
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Project 2: Čišćenje reke Tamiš -->
+      <div class="col-md-6 col-lg-4">
+        <a href="projects/tamis.html" class="project-card">
+          <div style="width:100%; height:210px; background:linear-gradient(135deg,#1b4332,#52b788); display:flex; align-items:center; justify-content:center; font-size:4rem;">🌊</div>
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <span class="card-title d-block">
+                <span data-lang="srb">Čišćenje reke Tamiš</span>
+                <span data-lang="eng">Tamiš River Cleanup</span>
+              </span>
+              <span class="badge-status badge-active">
+                <span data-lang="srb">Aktivan</span>
+                <span data-lang="eng">Active</span>
+              </span>
+            </div>
+            <p class="card-text">
+              <span data-lang="srb">Akcija čišćenja i revitalizacije obala reke Tamiš u saradnji sa lokalnom zajednicom i volonterima.</span>
+              <span data-lang="eng">A cleanup and revitalization action along the banks of the Tamiš River in collaboration with the local community and volunteers.</span>
+            </p>
+            <p class="mt-2 mb-0" style="font-size:.85rem; color:var(--hl-green); font-weight:600;">
+              <span data-lang="srb">Saznaj više →</span>
+              <span data-lang="eng">Learn more →</span>
+            </p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ FOUNDERS ═══════════════════════════ -->
+<section id="founders" class="py-section founders-section">
+  <div class="container">
+    <p class="section-label">
+      <span data-lang="srb">Ljudi iza priče</span>
+      <span data-lang="eng">The people behind the story</span>
+    </p>
+    <h2 class="section-title">
+      <span data-lang="srb">Osnivači</span>
+      <span data-lang="eng">Founders</span>
+    </h2>
+
+    <div class="row gy-4 mt-2">
+
+      <!-- Damir Čičić -->
+      <div class="col-lg-4">
+        <div class="founder-card h-100">
+          <div class="founder-body">
+            <div class="d-flex align-items-center gap-3 mb-1">
+              <div class="founder-avatar">DC</div>
+              <div>
+                <div class="founder-name">Damir Čičić</div>
+                <div class="founder-role">
+                  <span data-lang="srb">Suosnivač Hike Lab-a</span>
+                  <span data-lang="eng">Co-founder of Hike Lab</span>
+                </div>
+              </div>
+            </div>
+            <div class="founder-bio-wrap" id="bio-damir">
+              <p class="founder-bio" data-lang="srb">
+                Damir Čičić je dugogodišnji zaljubljenik u prirodu, planinarenje i avanturističke aktivnosti, sa bogatim iskustvom u organizaciji planinarskih tura i radu sa različitim grupama učesnika. Njegova misija je da ljudima približi prirodu kroz autentična iskustva, bez obzira na njihovo prethodno planinarsko iskustvo.
+              </p>
+              <p class="founder-bio" data-lang="srb">
+                Kao jedan od osnivača Hike Lab-a, Damir aktivno učestvuje u kreiranju planinarskih programa, vođenju akcija na terenu i razvoju zajednice okupljene oko ideje zdravog, aktivnog i održivog načina života. Posebno je posvećen promociji bezbednog boravka u prirodi, razvoju planinarske kulture i jačanju svesti o značaju očuvanja prirodnih vrednosti za buduće generacije.
+              </p>
+              <p class="founder-bio" data-lang="eng">
+                Damir Čičić is a long-time lover of nature, hiking, and adventure activities, with extensive experience organizing hiking tours and working with diverse groups of participants. His mission is to bring people closer to nature through authentic experiences, regardless of their prior hiking background.
+              </p>
+              <p class="founder-bio" data-lang="eng">
+                As one of the founders of Hike Lab, Damir actively participates in designing hiking programs, leading field expeditions, and building a community centered around a healthy, active, and sustainable lifestyle. He is especially dedicated to promoting safe outdoor practices, developing a culture of hiking, and raising awareness about the importance of preserving natural resources for future generations.
+              </p>
+            </div>
+            <button class="see-more-btn" onclick="toggleBio('bio-damir', this)">
+              <span data-lang="srb">Vidi sve ↓</span>
+              <span data-lang="eng">See more ↓</span>
+            </button>
+            <a href="https://www.linkedin.com/in/damir-%C4%8Di%C4%8Di%C4%87-3466a314/" target="_blank" rel="noopener" class="founder-linkedin">
+              <i class="bi bi-linkedin"></i> LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Irena Lidia Šeberle -->
+      <div class="col-lg-4">
+        <div class="founder-card h-100">
+          <div class="founder-body">
+            <div class="d-flex align-items-center gap-3 mb-1">
+              <div class="founder-avatar" style="background:var(--hl-green-light);">IŠ</div>
+              <div>
+                <div class="founder-name">Irena Lidia Šeberle</div>
+                <div class="founder-role">
+                  <span data-lang="srb">Suosnivačica Hike Lab-a</span>
+                  <span data-lang="eng">Co-founder of Hike Lab</span>
+                </div>
+              </div>
+            </div>
+            <div class="founder-bio-wrap" id="bio-irena">
+              <p class="founder-bio" data-lang="srb">
+                Irena Lidia Šeberle je iskusna projektna menadžerka i liderka sa dugogodišnjim iskustvom u vođenju međunarodnih timova, razvoju digitalnih proizvoda i organizaciji društveno odgovornih inicijativa. Kao strastveni planinar i zagovornik zaštite prirode, svoju profesionalnu ekspertizu spojila je sa željom da stvori platformu koja povezuje ljude kroz aktivnosti na otvorenom i konkretne akcije za zaštitu životne sredine.
+              </p>
+              <p class="founder-bio" data-lang="srb">
+                U okviru Hike Lab-a fokusirana je na razvoj strateških partnerstava, kreiranje i realizaciju projekata, saradnju sa kompanijama, institucijama i civilnim sektorom, kao i na razvoj inovativnih programa koji podstiču građanski aktivizam i očuvanje prirodnih resursa.
+              </p>
+              <p class="founder-bio" data-lang="eng">
+                Irena Lidia Šeberle is an experienced project manager and leader with years of expertise in managing international teams, developing digital products, and organizing socially responsible initiatives. As a passionate hiker and advocate for nature conservation, she has combined her professional expertise with a desire to build a platform that connects people through outdoor activities and concrete environmental action.
+              </p>
+              <p class="founder-bio" data-lang="eng">
+                Within Hike Lab, she focuses on developing strategic partnerships, creating and executing projects, collaborating with companies, institutions, and civil society, as well as developing innovative programs that encourage civic activism and the preservation of natural resources.
+              </p>
+            </div>
+            <button class="see-more-btn" onclick="toggleBio('bio-irena', this)">
+              <span data-lang="srb">Vidi sve ↓</span>
+              <span data-lang="eng">See more ↓</span>
+            </button>
+            <a href="https://www.linkedin.com/in/irena-lidia/" target="_blank" rel="noopener" class="founder-linkedin">
+              <i class="bi bi-linkedin"></i> LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Petar Šćepanović -->
+      <div class="col-lg-4">
+        <div class="founder-card h-100">
+          <div class="founder-body">
+            <div class="d-flex align-items-center gap-3 mb-1">
+              <div class="founder-avatar" style="background:#40916c;">PŠ</div>
+              <div>
+                <div class="founder-name">Petar Šćepanović</div>
+                <div class="founder-role">
+                  <span data-lang="srb">Suosnivač Hike Lab-a</span>
+                  <span data-lang="eng">Co-founder of Hike Lab</span>
+                </div>
+              </div>
+            </div>
+            <div class="founder-bio-wrap" id="bio-petar">
+              <p class="founder-bio" data-lang="srb">
+                Petar Šćepanović je iskusni full-stack web developer sa strašću prema izgradnji digitalnih platformi koje stvaraju stvarnu vrednost za zajednicu. Svoju tehničku ekspertizu kombinuje sa ljubavlju prema prirodi i aktivnom životu na otvorenom, što ga je prirodno dovelo do uloge jednog od osnivača Hike Lab-a.
+              </p>
+              <p class="founder-bio" data-lang="srb">
+                U okviru Hike Lab-a Petar je odgovoran za tehnički razvoj i arhitekturu digitalnih proizvoda organizacije. Njegov doprinos omogućava da projekti kao što je planinarske-akcije.com funkcionišu pouzdano i pruže što bolji korisnički doživljaj svim posetiocima i učesnicima planinarskih akcija.
+              </p>
+              <p class="founder-bio" data-lang="eng">
+                Petar Šćepanović is an experienced full-stack web developer with a passion for building digital platforms that create real value for communities. He combines his technical expertise with a love for nature and active outdoor life, which naturally led him to become one of the co-founders of Hike Lab.
+              </p>
+              <p class="founder-bio" data-lang="eng">
+                Within Hike Lab, Petar is responsible for the technical development and architecture of the organization's digital products. His contributions enable projects like planinarske-akcije.com to run reliably and provide the best possible experience for all visitors and hiking event participants.
+              </p>
+            </div>
+            <button class="see-more-btn" onclick="toggleBio('bio-petar', this)">
+              <span data-lang="srb">Vidi sve ↓</span>
+              <span data-lang="eng">See more ↓</span>
+            </button>
+            <a href="https://www.linkedin.com/in/p-scepanovic/" target="_blank" rel="noopener" class="founder-linkedin">
+              <i class="bi bi-linkedin"></i> LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Shared Vision -->
+    <div class="vision-box">
+      <div class="row align-items-center">
+        <div class="col-auto" style="font-size:2.5rem">🌿</div>
+        <div class="col">
+          <h3>
+            <span data-lang="srb">Zajednička vizija</span>
+            <span data-lang="eng">A shared vision</span>
+          </h3>
+          <p data-lang="srb">
+            Irena, Damir i Petar osnovali su Hike Lab sa željom da izgrade zajednicu u kojoj planinarenje predstavlja mnogo više od rekreacije. Njihova vizija je da svaka planinarska akcija bude prilika za učenje, povezivanje ljudi i stvaranje pozitivnog uticaja na prirodu i društvo.<br><br>
+            Kroz stotine pređenih kilometara, brojne organizovane akcije i rastuću zajednicu članova i volontera, nastavljaju da grade Hike Lab kao mesto gde se susreću avantura, znanje, odgovornost i ljubav prema prirodi. 🥾💚
+          </p>
+          <p data-lang="eng">
+            Irena, Damir, and Petar founded Hike Lab with the desire to build a community in which hiking means much more than recreation. Their vision is for every hiking expedition to be an opportunity for learning, connecting people, and creating a positive impact on nature and society.<br><br>
+            Through hundreds of kilometres walked, numerous organized expeditions, and a growing community of members and volunteers, they continue to build Hike Lab as a place where adventure, knowledge, responsibility, and love for nature all meet. 🥾💚
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════ TEAM ═══════════════════════════ -->
+<section id="team" class="py-section">
+  <div class="container">
+    <p class="section-label">
+      <span data-lang="srb">Naši ljudi</span>
+      <span data-lang="eng">Our people</span>
+    </p>
+    <h2 class="section-title">
+      <span data-lang="srb">Naš tim</span>
+      <span data-lang="eng">Our team</span>
+    </h2>
+    <p class="section-intro mb-5">
+      <span data-lang="srb">Upoznajte ljude koji čine Hike Lab zajednicom punom energije, znanja i ljubavi prema prirodi.</span>
+      <span data-lang="eng">Meet the people who make Hike Lab a community full of energy, knowledge, and love for nature.</span>
+    </p>
+
+    <div class="row gy-4">
+
+      <!-- Damir Čičić -->
+      <div class="col-sm-6 col-lg-4">
+        <div class="team-card">
+          <div class="team-avatar">DC</div>
+          <p class="member-name">
+            <a href="https://www.linkedin.com/in/damir-%C4%8Di%C4%8Di%C4%87-3466a314/" target="_blank" rel="noopener">Damir Čičić</a>
+          </p>
+          <p class="member-role">
+            <span data-lang="srb">Predsednik udruženja</span>
+            <span data-lang="eng">Association president</span>
+          </p>
+          <p class="member-desc">
+            <span data-lang="srb">Softverski inženjer, organizator planinarskih akcija, zaštitnik prirode.</span>
+            <span data-lang="eng">Software engineer, hiking organizer, nature conservationist.</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Irena Lidia Šeberle -->
+      <div class="col-sm-6 col-lg-4">
+        <div class="team-card">
+          <div class="team-avatar">IŠ</div>
+          <p class="member-name">
+            <a href="https://www.linkedin.com/in/irena-lidia/" target="_blank" rel="noopener">Irena Lidia Šeberle</a>
+          </p>
+          <p class="member-role">
+            <span data-lang="srb">Član upravnog odbora</span>
+            <span data-lang="eng">Board member</span>
+          </p>
+          <p class="member-desc">
+            <span data-lang="srb">Projektna menadžerka, liderka, ekološki aktivista i strastveni planinar.</span>
+            <span data-lang="eng">Project manager, leader, ecology activist, and passionate hiker.</span>
+          </p>
+        </div>
+      </div>
+
+
+      <!-- Sanja Ignjatović -->
+      <div class="col-sm-6 col-lg-4">
+        <div class="team-card">
+          <div class="team-avatar">SI</div>
+          <p class="member-name">
+            <a href="https://www.linkedin.com/in/sanja-ignjatovic-sah-nyah/" target="_blank" rel="noopener">Sanja Ignjatović</a>
+          </p>
+          <p class="member-role">
+            <span data-lang="srb">Član upravnog odbora</span>
+            <span data-lang="eng">Board member</span>
+          </p>
+          <p class="member-desc">
+            <span data-lang="srb">UX/UI dizajner sa oštrim okom za detalje i strašću za prelepo oblikovanim interfejsima.</span>
+            <span data-lang="eng">UX/UI designer with a keen eye for detail and a passion for beautifully crafted interfaces.</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Uglješa Đorić -->
+      <div class="col-sm-6 col-lg-4">
+        <div class="team-card">
+          <div class="team-avatar">UĐ</div>
+          <p class="member-name">
+            <a href="https://planinarske-akcije.com/users/profile/424" target="_blank" rel="noopener">Uglješa Đorić</a>
+          </p>
+          <p class="member-role">
+            <span data-lang="srb">Član upravnog odbora</span>
+            <span data-lang="eng">Board member</span>
+          </p>
+          <p class="member-desc">
+            <span data-lang="srb">Planinarski stručnjak sa bogatim iskustvom u terenu.</span>
+            <span data-lang="eng">Mountaineering expert with extensive field experience.</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Željko Miloradović -->
+      <div class="col-sm-6 col-lg-4">
+        <div class="team-card">
+          <div class="team-avatar">ŽM</div>
+          <p class="member-name">
+            <a href="https://www.linkedin.com/in/zeljko-miloradovic-066653238/" target="_blank" rel="noopener">Željko Miloradović</a>
+          </p>
+          <p class="member-role">
+            <span data-lang="srb">Član upravnog odbora</span>
+            <span data-lang="eng">Board member</span>
+          </p>
+          <p class="member-desc">
+            <span data-lang="srb">Inženjer platformi.</span>
+            <span data-lang="eng">Platform engineer.</span>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ CONTACT ═══════════════════════════ -->
+<section id="contact" class="py-section contact-section">
+  <div class="container">
+    <div class="row gy-5">
+      <div class="col-lg-5">
+        <p class="section-label">
+          <span data-lang="srb">Stupite u kontakt</span>
+          <span data-lang="eng">Get in touch</span>
+        </p>
+        <h2 class="section-title">
+          <span data-lang="srb">Kontaktirajte nas</span>
+          <span data-lang="eng">Contact us</span>
+        </h2>
+        <p class="section-intro">
+          <span data-lang="srb">Kontaktirajte nas putem emaila, telefona ili pronađite nas na društvenim mrežama.</span>
+          <span data-lang="eng">Reach us via email, phone, or find us on social media.</span>
+        </p>
+      </div>
+      <div class="col-lg-7">
+        <div class="contact-row">
+          <span class="contact-icon"><i class="bi bi-envelope-fill"></i></span>
+          <div>
+            <div style="font-size:.8rem; text-transform:uppercase; letter-spacing:.06em; color:var(--hl-muted); font-weight:600; margin-bottom:.2rem;">Email</div>
+            <a href="mailto:damircicic@gmail.com">damircicic@gmail.com</a><br>
+            <a href="mailto:irena.seberle@gmail.com">irena.seberle@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-row">
+          <span class="contact-icon"><i class="bi bi-telephone-fill"></i></span>
+          <div>
+            <div style="font-size:.8rem; text-transform:uppercase; letter-spacing:.06em; color:var(--hl-muted); font-weight:600; margin-bottom:.2rem;">
+              <span data-lang="srb">Telefon</span>
+              <span data-lang="eng">Phone</span>
+            </div>
+            <a href="tel:+381611722114">+381 (61) 172 2114</a>
+          </div>
+        </div>
+        <div class="contact-row">
+          <span class="contact-icon"><i class="bi bi-share-fill"></i></span>
+          <div>
+            <div style="font-size:.8rem; text-transform:uppercase; letter-spacing:.06em; color:var(--hl-muted); font-weight:600; margin-bottom:.6rem;">
+              <span data-lang="srb">Pratite nas</span>
+              <span data-lang="eng">Follow us</span>
+            </div>
+            <a href="https://www.linkedin.com/company/106597449" target="_blank" rel="noopener" class="social-btn">
+              <i class="bi bi-linkedin"></i> LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="row align-items-center gy-3">
+      <div class="col-md-6">
+        <span class="brand">🥾 Hike Lab</span>
+        <div class="mt-1">
+          <span data-lang="srb">© 2026 Hike Lab. Sva prava zadržana.</span>
+          <span data-lang="eng">© 2026 Hike Lab. All rights reserved.</span>
+        </div>
+      </div>
+      <div class="col-md-6 text-md-end">
+        <a href="#about" class="me-3">
+          <span data-lang="srb">O nama</span>
+          <span data-lang="eng">About</span>
+        </a>
+        <a href="#projects" class="me-3">
+          <span data-lang="srb">Projekti</span>
+          <span data-lang="eng">Projects</span>
+        </a>
+        <a href="#founders" class="me-3">
+          <span data-lang="srb">Osnivači</span>
+          <span data-lang="eng">Founders</span>
+        </a>
+        <a href="#contact">
+          <span data-lang="srb">Kontakt</span>
+          <span data-lang="eng">Contact</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // Founder bio expand / collapse
+  function toggleBio(id, btn) {
+    const wrap = document.getElementById(id);
+    const expanded = wrap.classList.toggle('expanded');
+    btn.querySelector('[data-lang="srb"]').textContent = expanded ? 'Sakrij ↑' : 'Vidi sve ↓';
+    btn.querySelector('[data-lang="eng"]').textContent = expanded ? 'Show less ↑' : 'See more ↓';
+  }
+
+  // Language toggle
+  function setLang(lang) {
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-srb').classList.toggle('active', lang === 'srb');
+    document.getElementById('btn-eng').classList.toggle('active', lang === 'eng');
+    document.documentElement.lang = lang === 'srb' ? 'sr' : 'en';
+    localStorage.setItem('hl-lang', lang);
+  }
+
+  // Restore dismissed banner state
+  (function () {
+    if (sessionStorage.getItem('wip-dismissed') === '1') {
+      const banner = document.getElementById('wip-banner');
+      if (banner) banner.style.display = 'none';
+    }
+  })();
+
+  // Restore saved language preference
+  (function () {
+    const saved = localStorage.getItem('hl-lang');
+    if (saved && saved !== 'srb') setLang(saved);
+  })();
+
+  // Close mobile nav when a link is clicked
+  document.querySelectorAll('#mainNav .nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      const collapse = document.getElementById('mainNav');
+      const bsCollapse = bootstrap.Collapse.getInstance(collapse);
+      if (bsCollapse) bsCollapse.hide();
     });
-</script> -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        let carousel = document.getElementById("memberCarousel");
-        let startX, isDragging = false;
+  });
+</script>
 
-        carousel.addEventListener("touchstart", (e) => {
-            isDragging = true;
-            startX = e.touches[0].clientX;
-        });
-
-        carousel.addEventListener("touchend", (e) => {
-            if (!isDragging) return;
-            let moveX = e.changedTouches[0].clientX - startX;
-            if (moveX < -50) {
-                bootstrap.Carousel.getInstance(carousel).next();
-            } else if (moveX > 50) {
-                bootstrap.Carousel.getInstance(carousel).prev();
-            }
-            isDragging = false;
-        });
-
-        carousel.addEventListener("mousedown", (e) => {
-            isDragging = true;
-            startX = e.clientX;
-        });
-
-        carousel.addEventListener("mouseup", (e) => {
-            if (!isDragging) return;
-            let moveX = e.clientX - startX;
-            if (moveX < -50) {
-                bootstrap.Carousel.getInstance(carousel).next();
-            } else if (moveX > 50) {
-                bootstrap.Carousel.getInstance(carousel).prev();
-            }
-            isDragging = false;
-        });
-
-        carousel.addEventListener("mouseleave", () => {
-            isDragging = false;
-        });
-    </script>
-  </body>
+</body>
 </html>
-
